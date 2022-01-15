@@ -1,80 +1,44 @@
 const container = document.querySelector('.container');
-const toBlogButton = document.querySelector('.blogBtn');
+const toGalleryButton = document.querySelector('.galleryBtn');
 const toAboutButton = document.querySelector('.aboutBtn');
-const toProjButton = document.querySelector('.projBtn')
 const toHomeBtns = document.querySelectorAll('.toHome');
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
 
 
 window.addEventListener("load", () => {
   loadHome();
-  var repos = requestProfile();
-  console.log(repos.tabled)
-
-  // document.getElementById('tabledOutput').innerHTML = repos;
 });
 
-function requestProfile() {
-  var request = new XMLHttpRequest();
-  var tabled;
-  request.onload = getRepos;
-  request.open('get', 'https://api.github.com/users/aidanMellin/repos', true);
-  request.send();
-  tabled = request()
-  console.log(request.tabled)
-  return tabled;
-}
-
-function getRepos() {
-  var responseObj = JSON.parse(this.responseText);
-  var repoCount = responseObj.length;
-  var i;
-  var repo;
-  var repoName;
-  var repoSize;
-  var repoDict = {}
-
-  for (i = 0; i < repoCount; i++) {
-    repo = responseObj[i];
-
-    repoName = repo.name;
-    repoSize = repo.size;
-    if (repo.stargazers_count >= 1) {
-      repoDict[repoName] = repo;
-    }
-  }
-  this.tabled = tablefyRepo(repoDict);
-  console.log(this.tabled)
-}
-
-function tablefyRepo(repoDict) {
-  table = []
-  var formattedString = "<table><tr><th>Name</th><th>Star Count</th><th>Size of Repo</th></tr>";
-  Object.entries(repoDict).forEach(([key, value]) => {
-    table.push([key, value.stargazers_count, value.size])
-  });
-
-  var i, j;
-  for (i = 0; i < table.length; i++) {
-    formattedString += "<tr>";
-    for (j = 0; j < table[i].length; j++) {
-      formattedString += "<td>";
-      if (j == 0) {
-        formattedString += "<a href='https://github.com/aidanMellin/" + table[i][j] + "'>";
-        formattedString += table[i][j];
-        formattedString += "</a>";
-      }
-      else
-        formattedString += table[i][j];
-      formattedString += "</td>";
-    }
-    formattedString += "</tr>";
-  }
-  formattedString += "</table>"
-  return formattedString;
-}
-
 function toHome() {
-  container.classList.remove('toProj', 'toBlog', 'toAbout');
+  container.classList.remove('toAbout', 'toGallery');
   console.log("toHome")
 }
 
@@ -82,16 +46,12 @@ function loadHome() {
   window.location.href = 'index.html#splashHome'
 }
 
-toBlogButton.addEventListener('click', () => {
-  container.classList.toggle('toBlog');
+toGalleryButton.addEventListener('click', () => {
+  container.classList.toggle('toGallery');
 })
 
 toAboutButton.addEventListener('click', () => {
   container.classList.toggle('toAbout');
-})
-
-toProjButton.addEventListener('click', () => {
-  container.classList.toggle('toProj');
 })
 
 toHomeBtns.forEach(element => {

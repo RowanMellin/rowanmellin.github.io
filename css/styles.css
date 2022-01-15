@@ -2,6 +2,7 @@
     font-family: RandyGG;
     src: url('fonts/RandyGGRegular.ttf');
 }
+
 @font-face {
     font-family: RandyGG;
     font-weight: bold;
@@ -19,6 +20,7 @@
     /* background: #212129; */
 
 }
+
 body {
     overflow: hidden;
 }
@@ -34,10 +36,6 @@ button {
     border: none;
 }
 
-div {
-    /* background-color: transparent; */
-}
-
 h1 {
     color: #eeebf0;
 }
@@ -49,8 +47,6 @@ h2 {
 li {
     align-self: center;
     padding-left: 5px;
-    /* padding-right: 50px; */
-    /* padding-bottom: 5px; */
     margin: 10px;
     list-style: none;
 
@@ -70,70 +66,47 @@ ul {
 
 /*----Customs---*/
 
-.about {
-    background: #212129;
-    overflow-y: visible;
-}
-.about button:nth-child(1) {
-    position: absolute;
-    top: 0;
-}
-
-.about h1{
-  position: absolute;
-  top: 15%;
-}
-
-.about table{
-  border: transparent;
-}
-
-.about .vl{
-  position: relative;
-  height: 500px;
-  position: relative;
-}
-
-.blog {
+.gallery {
     color: white;
     background-color: #212129;
 }
 
-.blog a {
+.gallery a {
     text-decoration: none;
     padding: 10px;
-    top: 20%;
+    top: 50%;
 }
-.blog button {
+
+.gallery button {
     position: absolute;
     left: 0;
 }
 
-.blog-entry {
+.gallery-entry {
     height: 100vh;
     padding: 5% 25%;
     background-color: #212129;
     overflow-y: auto;
 }
 
-.blog-entry h1 {
+.gallery-entry h1 {
     text-align: center;
 }
 
-.blog-entry h2 {
+.gallery-entry h2 {
     padding-top: 20px;
     font-weight: bold;
 }
 
-.blog-entry h3 {
+.gallery-entry h3 {
     font-weight: initial;
 }
 
-.blog-entry p {
+.gallery-entry p {
     padding-top: 20px;
 }
 
-.blog-container {
+.gallery-container {
     position: relative;
     padding: 10px;
     /* width: auto;
@@ -157,6 +130,7 @@ ul {
     background: transparent;
 
 }
+
 .container {
     height: 100vh;
     width: 300vw;
@@ -165,7 +139,8 @@ ul {
     transition: transform 0.3s ease 0.1s;
 
 }
-.container > div {
+
+.container>div {
     height: 100vh;
     width: 100vw;
 
@@ -177,36 +152,53 @@ ul {
     position: relative;
 }
 
-.project {
+.about {
     background-color: #212129;
 }
 
-.project .toHome {
+.about .toHome {
     background-image: url('media/rightHome.png');
     right: 0;
     position: absolute;
 }
 
-.project h1 {
+.about h1 {
     color: white;
     top: 5%;
     position: absolute;
 }
 
-.project td{
-  padding: 10px;
-  border-style:groove;
-  text-align: center;
+.about td {
+    padding: 10px;
+    /* border-style:groove; */
+    text-align: center;
 }
 
-.project td:nth-child(2) {
-  padding: 0px 50px;
-} 
-
-.project a{
-  text-decoration: none;
-  color: inherit;
+.about td:nth-child(2) {
+    padding: 0px 50px;
 }
+
+.about a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.about h1 {
+    position: absolute;
+    top: 15%;
+}
+
+.about table {
+    border: transparent;
+}
+
+.about .vl {
+    position: relative;
+    height: 500px;
+    position: relative;
+}
+
+
 
 .splash {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("media/longExposure.jpg");
@@ -224,24 +216,20 @@ ul {
 .splash button:nth-child(1) {
     position: absolute;
     left: 0;
-    background-image: url('media/leftProj.png');
-}
-
-.splash button:nth-child(3) {
-    /* Button to blog*/
-    position: absolute;
-    right: 0;
-    background-image: url('media/rightBlog.png');
-}
-.splash button:last-child {
-    /* Button to About*/
-    position: absolute;
-    bottom: 0;
     background-image: url('media/downAbout.png');
 }
 
-.blog .toHome {
+.splash button:nth-child(3) {
+    /* Button to gallery*/
+    position: absolute;
+    right: 0;
+    background-image: url('media/rightGallery.png');
+}
+
+
+.gallery .toHome {
     background-image: url('media/leftHome.png');
+    z-index: 999;
 }
 
 .toHome {
@@ -249,15 +237,108 @@ ul {
 }
 
 
-.toBlog {
+.toGallery {
     right: 0;
     transform: translateX(-100vw);
 }
 
 .toAbout {
-    transform: translateY(-100vh);
+    transform: translateX(100vw);
 }
 
-.toProj {
-    transform: translateX(100vw);
+/* Gallery CSS */
+img {
+    vertical-align: middle;
+}
+
+.secondary-container {
+    position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+    cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 60%;
+    width: auto;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 30%;
+    border-radius: 3px 0 0 3px;
+}
+.prev{
+    right: 69%;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 16px;
+    /* padding: 8px 12px; */
+    position: absolute;
+    top: 40%;
+    left:29%
+}
+
+/* Container for image text */
+.caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Six columns side by side */
+.column {
+    float: left;
+    width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+    opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+    opacity: 1;
+}
+
+.title{
+    color: white;
+    font-size: 25px;
+    z-index: 100;
+    text-align: center;
 }
